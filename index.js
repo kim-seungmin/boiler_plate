@@ -15,7 +15,7 @@ mongoose.connect('mongodb+srv://ksm:tmdals6265@cluster0.wqi0v.mongodb.net/myFirs
 .catch(err=>console.log(err))
 
 app.get('/', (req, res) => {
-  res.send('Hello World!')
+  res.send('Hello World!~')
 })
 
 app.post('/register', (req, res)=>{
