@@ -26,10 +26,7 @@ const userSchema = mongoose.Schema({
     token: {
         type: String
     },
-    token:{
-        type: String
-    },
-    yokenExp:{
+    tokenExp:{
             type: Number
     }
 })
