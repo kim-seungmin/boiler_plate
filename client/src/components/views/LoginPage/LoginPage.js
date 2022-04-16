@@ -1,6 +1,10 @@
-import React, { useState } from 'react'
-
+import { Axios } from 'axios';
+import { response } from 'express';
+import React, { useState } from 'react';
+import {useDispatch} from 'react-redux';
+import {loginUser} from '../../../_actions/user_action';
 function LoginPage() {
+  const dispatch = useDispatch();
 
   const [Email, setEmail] = useState("")
   const [Password, setPassword] = useState("")
@@ -12,7 +16,13 @@ function LoginPage() {
     setPassword(event.currentTarget.value)
   }
   const onSubmitHandler = (event)=>{
-    
+    event.preventDeafault(); //버튼 클릭할떄마다 refresh 방지
+    let body = {
+      email: Email,
+      password: Password
+    }
+
+    dispatch(loginUser(body))    
   }
 
   return (
