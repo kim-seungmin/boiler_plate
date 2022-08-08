@@ -1,4 +1,4 @@
-express 설치
+# express 설치
 ```
 npm install express --save
 ```
@@ -18,7 +18,7 @@ app.listen(port, () => {
 ```
 3000번 포트를 열어서 get으로 url주소 설정 listen으로 실행시 알람   
 
-Model은 Schema(데이터 구조 정의)를 감싸주는 역할   
+# Model은 Schema(데이터 구조 정의)를 감싸주는 역할   
 정보를 하나하나 지정   
 models\User.js   
 
@@ -39,4 +39,34 @@ const userSchema = mongoose.Schema({
 ```
 module.exports = {User}
 ```
-다른 파일에서도 User로 사용가능
+다른 파일에서도 User로 사용가능   
+```
+const {User} = require("./models/User")
+```
+
+# body-parser
+body 데이터를 분석(parser)해 req.body로 출력
+```
+npm install body-parser --save
+```
+
+```
+//application/x-www-form-urlencoded
+app.use(bodyParser.urlencoded({extended: true}));
+//application/json
+app.use(bodyParser.json());
+```
+POST의 URL인코딩방식(위) JSON방식(아래) 분석
+
+```
+const user = new User(req.body)
+```
+body에서 받아와 USER 형태(변수)의 user(변수명)로 만듬
+
+```
+res.status(200).json({
+      success: true
+    })
+```
+res: client로 응답 보냄
+
