@@ -71,6 +71,11 @@ res.status(200).json({
 res: client로 응답 보냄
 # 라우팅
 주소 매핑(apt.get, apt.post)   
+```
+app.get('/', (req, res) => {
+  res.send('Hello World!')
+})
+```   
 # Nodemon
 소스코드 변경시 자동으로 적용시켜줌
 backend 스크립트
@@ -88,4 +93,13 @@ module.exports ={
 const config = require('./config/Info')
 ~~~
 config.Name
+```
+
+# Node 환경
+```
+if(process.env.NODE_ENV == 'production'){
+    module.exports = require('./prod');
+}else{
+    module.exports = require('./dev');
+}
 ```

@@ -12,7 +12,7 @@ app.use(bodyParser.urlencoded({extended: true}));
 app.use(bodyParser.json());
 
 const mongoose = require('mongoose')
-mongoose.connect(config.mongoURI).then(()=>console.log('MongoDB Connected...'))
+mongoose.connect(config.MongoURI).then(()=>console.log('MongoDB Connected...'))
 .catch(err=>console.log(err))
 
 app.get('/', (req, res) => {
