@@ -131,3 +131,9 @@ userSchema.pre('save', function(next){
 })
 ```
 save호출시 실행전에 이함수 실행후 next를 통해 다음 save로 넘어감
+
+# 미들웨어
+```
+app.post('/api/users/auth', auth, (req, res) => {
+```
+auth를 통과하지 못하면 실행하지않음

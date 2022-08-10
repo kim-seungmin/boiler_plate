@@ -2,7 +2,8 @@ const express = require('express')
 const app = express()
 const port = 3000
 const bodyParser = require('body-parser');
-const {User} = require("./models/User")
+const {User} = require("./models/User");
+const {auth} = require("./middleware/auth");
 
 const config = require('./config/key')
 
@@ -32,7 +33,7 @@ app.post('/register', (req, res)=>{
   })
 })
 
-app.post('/login',(req, res)=>{
+app.post('/api/users/login',(req, res)=>{
   //find email from db
   User.findOne({email: req.body.email },(err, user)=>{
     if(!user){
@@ -55,6 +56,19 @@ app.post('/login',(req, res)=>{
       })
     })
   }) 
+})
+
+app.post('/api/users/auth', auth, (req, res) => {
+  res.status(200).json({
+    _id: req.user._id,
+    isAdmin: req.user.role ===0 ? false : true,
+    isAuth: true,
+    email: req.user.email,
+    name: req.user.name,
+    lastname: req.user.lastname,
+    role: req.user.role,
+    image: req.user.image
+  })
 })
 
 app.listen(port, () => {
