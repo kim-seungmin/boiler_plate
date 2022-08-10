@@ -103,3 +103,31 @@ if(process.env.NODE_ENV == 'production'){
     module.exports = require('./dev');
 }
 ```
+
+# bcrypt
+```
+const bcrypt = require('bcrypt');
+const saltRounds=10;
+```
+salt를 사용 해쉬 함수를 통해 암호화함
+
+# pre
+```
+userSchema.pre('save', function(next){
+    var user=this;
+
+    if(user.isModified('password')){
+        bcrypt.genSalt(saltRounds, function (err, salt){
+            if(err) return next(err)            
+            bcrypt.hash(user.password, salt, function(err, hash){
+                if(err) return next(err)
+                user.password = hash
+                next()
+            })
+        })    
+    } else{
+        next()
+    }   
+})
+```
+save호출시 실행전에 이함수 실행후 next를 통해 다음 save로 넘어감
