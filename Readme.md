@@ -137,3 +137,24 @@ save호출시 실행전에 이함수 실행후 next를 통해 다음 save로 넘
 app.post('/api/users/auth', auth, (req, res) => {
 ```
 auth를 통과하지 못하면 실행하지않음
+
+# React 설치
+```
+npx create-react-app .
+```
+gyp ERR 발생시
+```
+xcode-select --install
+```
+안될경우
+```
+sudo rm -rf $(xcode-select -print-path)
+xcode-select --install
+```
+
+# NPX
+NPM: 노드 패키지 메니저
+npm install -g create-react-app
+-g 옵션을 통해 글로벌로 설치   
+npx를 사용하여 npm 레지스토리에 있는 로컬을 찾아서 실행
+디스크 낭비시켜주지 않음 항상 최신버전 사용
